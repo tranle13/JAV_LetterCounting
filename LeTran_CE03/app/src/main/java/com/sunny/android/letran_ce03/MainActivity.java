@@ -5,6 +5,8 @@
 
 package com.sunny.android.letran_ce03;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +40,23 @@ import java.util.Locale;
     private View.OnClickListener viewTapped = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            final NumberPicker picker = (NumberPicker)findViewById(R.id.npk_NumberPicker);
+            final int chosenIndex = picker.getValue();
+            if (chosenIndex > 0 && allWords.size() > 0) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(R.string.alert_title);
+                builder.setMessage(allWords.get(chosenIndex-1));
+                builder.setPositiveButton(R.string.alert_pos_btn, null);
+                builder.setNegativeButton(R.string.alert_nev_btn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        allWords.remove(chosenIndex-1);
+                        updatePicker_Texts(picker);
+                    }
+                });
 
+                builder.show();
+            }
         }
     };
 
@@ -67,8 +85,6 @@ import java.util.Locale;
                 feedback = Toast.makeText(this, R.string.feedback_allwhitespace, Toast.LENGTH_SHORT);
             } else {
                 allWords.add(text);
-                int newTextLength = text.length();
-                wordLength.add(newTextLength);
                 input.setText("");
                 feedback = Toast.makeText(this, R.string.feedback_success, Toast.LENGTH_SHORT);
             }
@@ -86,26 +102,35 @@ import java.util.Locale;
     private void updatePicker_Texts(NumberPicker picker) {
         float average = 0f;
         float median = 0f;
+        String averageFormat;
+        String medianFormat;
+
+        wordLength.clear();
 
         if (allWords.size() > 0) {
             picker.setMinValue(1);
             picker.setMaxValue(allWords.size());
             for (String word: allWords) {
                 average += word.length();
+                wordLength.add(word.length());
             }
+
             Collections.sort(wordLength);
 
             if (wordLength.size() % 2 == 0) {
                 int middleIndex = wordLength.size()/2;
                 median = wordLength.get(middleIndex) + wordLength.get(middleIndex -1);
                 median /= 2;
-                average /= allWords.size();
             } else {
                 if (wordLength.size() > 1) {
                     median = wordLength.get(wordLength.size() / 2 - 1);
                 } else {
                     median = wordLength.get(0);
                 }
+            }
+
+            if (allWords.size() > 1) {
+                average /= allWords.size();
             }
         } else {
             picker.setMinValue(0);
@@ -115,7 +140,21 @@ import java.util.Locale;
         TextView averageText = (TextView)findViewById(R.id.txt_Average);
         TextView medianText = (TextView)findViewById(R.id.txt_Median);
 
-        medianText.setText(String.format(Locale.getDefault(), "%.2f", median));
-        averageText.setText(String.format(Locale.getDefault(), "%.2f", average));
+        // Code added to see if median and average have numbers after decimal points or not
+        if (average % 1 == 0) {
+            average = Math.round(average);
+            averageFormat = "%.0f";
+        } else {
+            averageFormat = "%.2f";
+        }
+
+        if (median % 1 == 0) {
+            median = Math.round(median);
+            medianFormat = "%.0f";
+        } else {
+            medianFormat = "%.2f";
+        }
+        averageText.setText(String.format(Locale.getDefault(), averageFormat, average));
+        medianText.setText(String.format(Locale.getDefault(), medianFormat, median));
     }
 }

@@ -10,4 +10,7 @@
     <string name="feedback_allwhitespace">You cannot add only white space!</string>
     <string name="feedback_alreadyexist">You already added this string</string>
     <string name="feedback_success">Word added!</string>
+    <string name="alert_title">Selected string:</string>
+    <string name="alert_pos_btn">Cancel</string>
+    <string name="alert_nev_btn">Remove</string>
 </resources>
