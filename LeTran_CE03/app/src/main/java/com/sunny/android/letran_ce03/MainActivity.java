@@ -22,20 +22,23 @@ import java.util.Locale;
     public class MainActivity extends AppCompatActivity {
 
         private Toast feedback = null;
-        private ArrayList<String> allWords = new ArrayList<>();
-        private ArrayList<Integer> wordLength = new ArrayList<>();
+        private ArrayList<String> allWords = null;
+        private ArrayList<Integer> wordLength = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        allWords = new ArrayList<>();
+        wordLength = new ArrayList<>();
+
         findViewById(R.id.btn_Add).setOnClickListener(addTapped);
         findViewById(R.id.btn_View).setOnClickListener(viewTapped);
     }
 
     // Create function to handle view event
-    private View.OnClickListener viewTapped = new View.OnClickListener() {
+    private final View.OnClickListener viewTapped = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             final NumberPicker picker = (NumberPicker)findViewById(R.id.npk_NumberPicker);
@@ -59,7 +62,7 @@ import java.util.Locale;
     };
 
     // Create function to handle add event
-    private View.OnClickListener addTapped = new View.OnClickListener() {
+    private final View.OnClickListener addTapped = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             EditText input = (EditText)findViewById(R.id.txt_TextInput);
