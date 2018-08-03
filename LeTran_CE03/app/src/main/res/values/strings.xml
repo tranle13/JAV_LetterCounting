@@ -13,4 +13,5 @@
     <string name="alert_title">Selected string:</string>
     <string name="alert_pos_btn">Cancel</string>
     <string name="alert_nev_btn">Remove</string>
+    <string name="hint">Enter a string</string>
 </resources>

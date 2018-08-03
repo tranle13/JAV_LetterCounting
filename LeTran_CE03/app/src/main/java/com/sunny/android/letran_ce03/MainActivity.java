@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -24,7 +23,6 @@ import java.util.Locale;
 
         private Toast feedback = null;
         private ArrayList<String> allWords = new ArrayList<>();
-        private static final String TAG = "check";
         private ArrayList<Integer> wordLength = new ArrayList<>();
 
     @Override
