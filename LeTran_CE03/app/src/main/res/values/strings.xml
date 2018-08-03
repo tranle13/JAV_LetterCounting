@@ -6,4 +6,8 @@
     <string name="txt_Median">Median word length:</string>
     <string name="average">0</string>
     <string name="median">0</string>
+    <string name="feedback_empty">Type in something!</string>
+    <string name="feedback_allwhitespace">You cannot add only white space!</string>
+    <string name="feedback_alreadyexist">You already added this string</string>
+    <string name="feedback_success">Word added!</string>
 </resources>

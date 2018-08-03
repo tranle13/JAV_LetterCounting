@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_Add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/txt_Average"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="@+id/btn_Add"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Add" />
 
     <TextView
         android:id="@+id/textView4"
@@ -49,13 +49,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_View"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/btn_View"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/btn_Add"
+        app:layout_constraintStart_toStartOf="@+id/btn_Add"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:gravity="center"
         android:text="@string/average"
         app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/btn_Add"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
@@ -84,12 +84,13 @@
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <NumberPicker
+        android:id="@+id/npk_NumberPicker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3">
+        app:layout_constraintTop_toBottomOf="@+id/btn_View">
 
     </NumberPicker>
 </android.support.constraint.ConstraintLayout>
