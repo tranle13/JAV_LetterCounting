@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LeTran_CE03</string>
+    <string name="btn_Add">ADD</string>
+    <string name="btn_View">VIEW</string>
+    <string name="txt_Average">Average word length:</string>
+    <string name="txt_Median">Median word length:</string>
+    <string name="average">0</string>
+    <string name="median">0</string>
 </resources>
