@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.Locale;
 
     public class MainActivity extends AppCompatActivity {
 
@@ -81,10 +81,11 @@ import java.util.Comparator;
 
         feedback.show();
     }
-    private void updatePicker_Texts(NumberPicker picker) {
-        int average = 0;
-        int median = 0;
 
+    // Create function to update the picker and textviews
+    private void updatePicker_Texts(NumberPicker picker) {
+        float average = 0f;
+        float median = 0f;
 
         if (allWords.size() > 0) {
             picker.setMinValue(1);
@@ -94,12 +95,11 @@ import java.util.Comparator;
             }
             Collections.sort(wordLength);
 
-            for (Integer num: wordLength) {
-                Log.i(TAG, "OrderedNumber: "+num);
-            }
             if (wordLength.size() % 2 == 0) {
                 int middleIndex = wordLength.size()/2;
-                median = (wordLength.get(middleIndex) + wordLength.get(middleIndex -1))/2;
+                median = wordLength.get(middleIndex) + wordLength.get(middleIndex -1);
+                median /= 2;
+                average /= allWords.size();
             } else {
                 if (wordLength.size() > 1) {
                     median = wordLength.get(wordLength.size() / 2 - 1);
@@ -107,28 +107,15 @@ import java.util.Comparator;
                     median = wordLength.get(0);
                 }
             }
-
-            TextView averageText = (TextView)findViewById(R.id.txt_Average);
-            TextView medianText = (TextView)findViewById(R.id.txt_Median);
-
-            medianText.setText(String.valueOf(median));
-            averageText.setText(String.valueOf(average/allWords.size()));
         } else {
             picker.setMinValue(0);
             picker.setMaxValue(0);
         }
+
+        TextView averageText = (TextView)findViewById(R.id.txt_Average);
+        TextView medianText = (TextView)findViewById(R.id.txt_Median);
+
+        medianText.setText(String.format(Locale.getDefault(), "%.2f", median));
+        averageText.setText(String.format(Locale.getDefault(), "%.2f", average));
     }
-
-    Comparator<Integer> comparation = new Comparator<Integer>() {
-        @Override
-        public int compare(Integer o1, Integer o2) {
-            if (o1 > o2) {
-                return 1;
-            } else if (o1 < o2) {
-                return -1;
-            }
-
-            return 0;
-        }
-    };
 }
