@@ -24,6 +24,7 @@ import java.util.Locale;
         private Toast feedback = null;
         private ArrayList<String> allWords = null;
         private ArrayList<Integer> wordLength = null;
+        private static final String TAG = "H";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +125,7 @@ import java.util.Locale;
                 median /= 2;
             } else {
                 if (wordLength.size() > 1) {
-                    median = wordLength.get(wordLength.size() / 2 - 1);
+                    median = wordLength.get((wordLength.size() - 1)/2);
                 } else {
                     median = wordLength.get(0);
                 }
